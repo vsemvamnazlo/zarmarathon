@@ -128,9 +128,6 @@ function generateLog(firstPerson, secondPerson) {
         `${firstPerson.name} ${firstPerson.damageHP} / ${firstPerson.hit} пытался что-то сказать, но вдруг, неожиданно ${secondPerson.name} ${secondPerson.damageHP} / ${secondPerson.hit} со скуки, разбил бровь сопернику.`
     ];
 
-    //console.log(character1.damageHP - character.damageHP);
-    //console.log(damageEnemy);
-    //console.log(damageChar);
     return logs[random(logs.length) - 1]
 }
 
