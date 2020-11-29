@@ -1,14 +1,15 @@
-const $btn = document.getElementById('btn-kick');
-const $btn2 = document.getElementById('btn-poison');
+
 class Selectors {
     constructor(name) {
         this.elHP = document.getElementById(`health-${name}`);
         this.elProgressbar = document.getElementById(`progressbar-${name}`);
+        this.elImage = document.getElementById(`image-${name}`);
+        this.elName = document.getElementById(`name-${name}`);
     }
 }
 
-class Pokemon extends Selectors {
-    constructor({ name, hp, type, selectors}) {
+class Pokemon extends Selectors { 
+    constructor({ name, hp, type, selectors, attacks = [], pokemons = [], img }) {
         super(selectors);
 
         this.name = name
@@ -17,26 +18,37 @@ class Pokemon extends Selectors {
             total: hp,
         };
         this.type = type;
+        this.attacks = attacks;
+        this.pokemons = pokemons
 
+        this.renderName();
         this.renderHP();
+        this.renderImage(img);
     }
     
 
     changeHP = (count, cb) => {
         this.hp.current -= count;
 
-        if (this.hp.current <= 0) {
-            this.hp.current = 0;
-            alert('бедный ' + this.name + ' проиграл!');
-            $btn.disabled = true;
-            $btn2.disabled = true;
-        }
+        // if (this.hp.current <= 0) {
+        //     this.hp.current = 0;
+        //     alert('бедный ' + this.name + ' проиграл!');
+        //     $btn.disabled = true;
+        //     $btn2.disabled = true;
+        // }
         
         this.renderHP();
         cb && cb(count);
         
     }
 
+    renderName() {
+        this.elName.innerText = this.name;
+    }
+
+    renderImage = (src) => {
+        this.elImage.src = src
+    }
     
     renderHP = () => {
         this.renderHPLife()
