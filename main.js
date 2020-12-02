@@ -1,9 +1,17 @@
 import Pokemon from "./pokemon.js";
-import { pokemons } from "./pokemons.js"
 
-const randomPokemon1 = pokemons[Math.floor(Math.random()*pokemons.length)];
-const randomPokemon2 = pokemons[Math.floor(Math.random()*pokemons.length)];
 
+class Game {
+    getPoke = async () => {
+        const response = await fetch('https://reactmarathon-api.netlify.app/api/pokemons?random=true')
+        const body = await response.json();
+        return body;
+    }
+    start = async () => {
+
+const randomPokemon1 = await this.getPoke();
+const randomPokemon2 = await this.getPoke();
+        
 let player1 = new Pokemon({
     ...randomPokemon1,
     selectors: 'player1',
@@ -35,12 +43,11 @@ player1.attacks.forEach(item => {
       $p.innerText = log;
       const $logs = document.querySelector('#logs');
       $logs.insertBefore($p, $logs.children[0]);
-    })
+    });
     $control.appendChild($btn);
     $buttons.push($btn);
 });
 
-//randomHit();
 
 function randomHit() {
     const btnRandomSkill = document.createElement('button');
@@ -113,3 +120,9 @@ function generateLog(player1, player2, count) {
 
     return logs[random(logs.length) - 1];
 };
+
+    }
+}
+
+const game = new Game();
+game.start();
