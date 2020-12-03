@@ -96,6 +96,7 @@ function countBtn(count = 6, el,) {
 
 function disableButtons() {
     $buttons.forEach(button => button.disabled = true);
+    document.getElementById('Reset-game').src='./assets/Pokemon_log_restart.png'
 };
 
 function random (num) {
