@@ -477,12 +477,13 @@ h1 {
 }
 
 #logs {
+    overflow: hidden;
     width: 50%;
+    height: 150px;
     margin-left: 25%;
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: center;
     background-color: rgba(255, 255, 255, 0.308);
     border-radius: 20px;
 }
